@@ -6,7 +6,12 @@ from langchain.chat_models import ChatOpenAI
 from langchain.agents import initialize_agent
 from langchain.agents import AgentType
 import os
+import openai
 
+from dotenv import load_dotenv
+load_dotenv()
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 llm = ChatOpenAI(temperature=0)
 
@@ -18,7 +23,7 @@ agent = initialize_agent(
 )
 
 agent.run(
-    "create a text file called empty and inside it, add code that trains a basic convolutional neural network for 4 epochs"
+    "create a python file called empty and inside it, add pytorch code that trains a convolution neural network for 4 epochs"
 )
 
 

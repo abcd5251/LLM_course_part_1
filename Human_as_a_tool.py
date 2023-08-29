@@ -3,7 +3,12 @@ from langchain.llms import OpenAI
 from langchain.agents import load_tools, initialize_agent
 from langchain.agents import AgentType
 import os
+import openai
+from dotenv import load_dotenv
+load_dotenv()
 
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 llm = ChatOpenAI(temperature=0.5)

@@ -6,7 +6,13 @@ from langchain.agents import AgentType
 from langchain.llms import OpenAI
 from langchain import LLMMathChain, SerpAPIWrapper
 import os
+import openai
 
+from dotenv import load_dotenv
+load_dotenv()
+
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 tool = YouTubeSearchTool()
@@ -27,7 +33,7 @@ agent = initialize_agent(
     verbose=True,
 )
 
-agent.run('Whats a joe rogan video on an interesting topic')
+agent.run('Python video for building LLM from scratch?')
 
 
 

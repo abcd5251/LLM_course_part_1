@@ -1,12 +1,17 @@
 import os
 
-os.environ["LANGCHAIN_TRACING"] = "true"
+# os.environ["LANGCHAIN_TRACING"] = "true" will trigger an error
 
 from langchain import OpenAI
-from langchain.agents import initialize_agent, AgentType
+from langchain.agents import initialize_agent, AgentType, Tool
 from langchain.llms import OpenAI
-from langchain.agents import initialize_agent, Tool
 from langchain.agents import AgentType
+import openai
+
+from dotenv import load_dotenv
+load_dotenv()
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def multiplier(a, b):
     return a / b
@@ -25,7 +30,7 @@ tools = [
     )
 ]
 agent = initialize_agent(
-    tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True
+    tools, llm, agent = AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True
 )
 
 agent.run("3 times four?")

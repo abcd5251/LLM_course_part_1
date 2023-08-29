@@ -26,7 +26,7 @@ welcome_message = """Welcome to the Chainlit PDF QA demo! To get started:
 
 def process_file(file: AskFileResponse):
     import tempfile
-
+    print("type:",file.type)
     if file.type == "text/plain":
         Loader = TextLoader
     elif file.type == "application/pdf":
@@ -65,10 +65,10 @@ async def start():
         files = await cl.AskFileMessage(
             content=welcome_message,
             accept=["text/plain", "application/pdf"],
-            max_size_mb=20,
+            max_size_mb=20, # size of the file
             timeout=180,
         ).send()
-
+    print(len(files))
     file = files[0]
 
     msg = cl.Message(content=f"Processing `{file.name}`...")

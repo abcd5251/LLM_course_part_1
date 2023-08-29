@@ -19,7 +19,7 @@ from langchain.tools import ShellTool
 
 shell_tool = ShellTool()
 
-
+# take the code in CLI_GPT to here
 @cl.on_chat_start
 def start():
     llm = ChatOpenAI(temperature=0)
