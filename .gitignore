@@ -1,3 +1,5 @@
 # environment
 venv
 .env
+.chainlit
+__pycache__
